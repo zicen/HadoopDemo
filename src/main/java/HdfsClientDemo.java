@@ -1,11 +1,12 @@
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.LocatedFileStatus;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.RemoteIterator;
+import org.apache.hadoop.fs.*;
+import org.apache.hadoop.io.IOUtils;
+import org.apache.hadoop.yarn.webapp.hamlet.HamletSpec;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Iterator;
@@ -75,4 +76,37 @@ public class HdfsClientDemo {
         }
     }
 
+    /**
+     * 获取一个文件的所有block位置信息，然后读取指定block中的内容
+     * @throws IllegalArgumentException
+     * @throws IOException
+     */
+    @Test
+    public void testCat() throws IllegalArgumentException,IOException{
+        FSDataInputStream in = fs.open(new Path("/wordcount/input/book1.txt"));
+        //拿到文件信息
+        FileStatus[] fileStatuses = fs.listStatus(new Path("/wordcount/input/book1.txt"));
+        //获取这个文件的所有block的信息
+        BlockLocation[] fileBlockLocations = fs.getFileBlockLocations(fileStatuses[0], 0L, fileStatuses[0].getLen());
+        //第一个block的长度
+        long length = fileBlockLocations[0].getLength();
+        //第一个block的起始偏移量
+        long offset = fileBlockLocations[0].getOffset();
+
+        System.out.println(length);
+        System.out.println(offset);
+        //获取第一个block的写入输出流
+        IOUtils.copyBytes(in, System.out, (int) length);
+        byte[] b = new byte[4096];
+
+        FileOutputStream os = new FileOutputStream(new File("d:/block0.txt"));
+        while (in.read(offset, b, 0, 4096) != -1) {
+            os.write(b);
+            offset += 4096;
+            if (offset>=length) return;
+        }
+        os.flush();
+        os.close();
+        in.close();
+    }
 }
