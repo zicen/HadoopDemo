@@ -18,6 +18,9 @@ import org.apache.hadoop.io.IOUtils;
  */
 public class RegexAcceptPathFilter implements PathFilter {
     private final String regex;
+    private static String inputLocalPath = "E:/donwload/stock/*";
+    private static String hdfsHost = "hdfs://mini:9000";
+    private static String dstPath = "hdfs://mini:9000/filetest/";
 
     public RegexAcceptPathFilter(String regex) {
         this.regex = regex;
@@ -38,7 +41,7 @@ public class RegexAcceptPathFilter implements PathFilter {
 
     public static void list(String srcPath, String dstPath) throws IOException {
         Configuration configuration = new Configuration();
-        configuration.set("fs.defaultFS", "hdfs://mini:9000");
+        configuration.set("fs.defaultFS", hdfsHost);
         FileSystem fs = FileSystem.get(configuration);
         LocalFileSystem local = FileSystem.getLocal(configuration);
 
@@ -70,7 +73,7 @@ public class RegexAcceptPathFilter implements PathFilter {
     }
 
     public static void main(String[] args) throws IOException {
-        list("E:/donwload/stock/*", "hdfs://mini:9000/filetest/");
+        list(inputLocalPath, dstPath);
     }
 
 }
