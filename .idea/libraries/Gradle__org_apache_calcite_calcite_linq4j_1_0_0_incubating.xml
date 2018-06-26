@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.calcite:calcite-linq4j:1.0.0-incubating">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.calcite/calcite-linq4j/1.0.0-incubating/4de6959910cf3a35ec7f1dc4a4168faeb89e6ccb/calcite-linq4j-1.0.0-incubating.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.calcite/calcite-linq4j/1.0.0-incubating/36e231e53be66f152cfc35919e20c74568ae2bbd/calcite-linq4j-1.0.0-incubating-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

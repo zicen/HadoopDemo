@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.hive:hive-ant:1.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-ant/1.1.0/60fee7ac8cf4b1cd61ad0f00af790bcdced403dc/hive-ant-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive/hive-ant/1.1.0/18546dae87ded35bd02f89140366a6f61c7da116/hive-ant-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

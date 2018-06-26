@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    //hadoop版本一定要和自己本地的windows配置的版本一致
+    compile 'org.apache.hadoop:hadoop-client:2.2.0'
+    compile group: 'org.apache.hive', name: 'hive-exec', version: '1.1.0'
 
-    compile 'org.apache.hadoop:hadoop-client:2.6.1'
+
 }

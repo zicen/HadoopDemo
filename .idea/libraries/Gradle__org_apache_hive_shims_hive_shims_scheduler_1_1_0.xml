@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.hive.shims:hive-shims-scheduler:1.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive.shims/hive-shims-scheduler/1.1.0/f72e9b57fae9d4780049ae9b3bf54e48cb132b32/hive-shims-scheduler-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.hive.shims/hive-shims-scheduler/1.1.0/3aa572f7439b4a7b3e7eaa493c79323dbe74bbbc/hive-shims-scheduler-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
