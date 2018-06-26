@@ -1,4 +1,4 @@
-package com.zhenquan.mapreduce.test;
+package com.zhenquan.hdfs.copyfile;
 
 import java.io.DataInput;
 import java.io.DataOutput;
