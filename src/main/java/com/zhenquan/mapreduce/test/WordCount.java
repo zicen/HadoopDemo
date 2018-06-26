@@ -56,9 +56,7 @@ public static void main(String[] args) throws Exception {
 	job.setOutputKeyClass(Text.class);
 	job.setOutputValueClass(IntWritable.class);
 	job.setInputFormatClass(NLineInputFormat.class);
-	// �����ļ�·��
 	FileInputFormat.addInputPath(job, new Path("hdfs://mini:9000/wordcount/input/djt.txt"));
-	// ����ļ�·��
 	FileOutputFormat.setOutputPath(job, new Path(
 			"hdfs://mini:9000/wordcount/out"));
 	System.exit(job.waitForCompletion(true) ? 0 : 1);
