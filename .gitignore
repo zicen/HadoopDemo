@@ -1,0 +1,7 @@
+.gradle
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/out
+/captures
+.externalNativeBuild
