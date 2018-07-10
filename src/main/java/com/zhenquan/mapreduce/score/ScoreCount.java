@@ -65,7 +65,7 @@ public class ScoreCount extends Configured implements Tool{
 	}
 	public static void main(String[] args) throws Exception{
 		String[] args0 = {
-				"hdfs://mini:9000/junior/score.txt","hdfs://mini:9000/junior/score-out"
+				"hdfs://mini:9000/score/score.txt","hdfs://mini:9000/score/score-out"
 		};
 		int ec = ToolRunner.run(new Configuration(), new ScoreCount(),args0);
 		System.exit(ec);

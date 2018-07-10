@@ -63,4 +63,9 @@ public class ScoreWritable implements WritableComparable<Object>{
     public int compareTo(Object o) {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Chinese:"+getChinese()+",Math:"+getMath()+",English:"+getEnglish()+",Physics:"+getPhysics()+",Chemistry:"+getChemistry();
+    }
 }

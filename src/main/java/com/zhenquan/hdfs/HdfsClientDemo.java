@@ -163,4 +163,19 @@ public class HdfsClientDemo {
         os.close();
         in.close();
     }
+
+    @Test
+    public void renameFile() throws IOException {
+        RemoteIterator<LocatedFileStatus> locatedFileStatusRemoteIterator = fs.listFiles(new Path("/email/out/"), true);
+        while (locatedFileStatusRemoteIterator.hasNext()) {
+            LocatedFileStatus next = locatedFileStatusRemoteIterator.next();
+            System.out.println(next.getPath().toString());
+            String newName = next.getPath().toString().replace("-r-00000", "");
+            System.out.println("newName:"+newName);
+            fs.rename(next.getPath(), new Path(newName));
+        }
+        fs.close();
+    }
+
+
 }
