@@ -24,11 +24,11 @@ public class TvCount extends Configured implements Tool{
 	        protected void map(Text key, TVWritable value, Context context)
 	                throws IOException, InterruptedException {
 	        	System.out.println("value:"+value.toString());
-	        	
+
 	        	context.write(key, value);
 	        }
 	    }
-	    
+
 	    public static class TvReducer extends Reducer< Text, TVWritable, Text, Text > {
 	        private MultipleOutputs< Text, Text> multipleOutputs;
 	       @Override
@@ -36,38 +36,37 @@ public class TvCount extends Configured implements Tool{
 	    		throws IOException, InterruptedException {
 	    	   multipleOutputs =  new MultipleOutputs< Text, Text>(context);
 	    }
-	        
+
 	        protected void reduce(Text key, Iterable< TVWritable > Values, Context context)
 	                throws IOException, InterruptedException {
 	        	long bofang = 0 ,shoucang = 0,pinglun=0,cai=0,zan=0;
-	   
-	        	for(TVWritable value:Values) {	
+
+	        	for(TVWritable value:Values) {
 	        			bofang+=value.bofang;
 		        		shoucang += value.shoucang;
 		        		pinglun  += value.pinglun;
 		        		cai += value.cai;
 		        		zan += value.zan;
-					
+
 	        	}
 	        	String[] records = key.toString().split("\t");
-	        	
+
 	        	Text result = new Text(bofang+" "+shoucang+" "+pinglun+" "+cai+" "+zan);
-	        	if ("1".equals(records[1])) {
-	        		multipleOutputs.write(key,result ,"youku");
-				}else if ("2".equals(records[1])) {
-					multipleOutputs.write(key,result ,"shouhu");
-				}else if ("3".equals(records[1])) {
-					multipleOutputs.write(key,result ,"tudou");
-				}else if ("4".equals(records[1])) {
-					multipleOutputs.write(key,result ,"aiqiyi");
-				}else if ("5".equals(records[1])) {
-					multipleOutputs.write(key,result ,"xunlei");
+				if (records.length == 2) {
+					if ("1".equals(records[1])) {
+						multipleOutputs.write(key,result ,"youku");
+					}else if ("2".equals(records[1])) {
+						multipleOutputs.write(key,result ,"shouhu");
+					}else if ("3".equals(records[1])) {
+						multipleOutputs.write(key,result ,"tudou");
+					}else if ("4".equals(records[1])) {
+						multipleOutputs.write(key,result ,"aiqiyi");
+					}else if ("5".equals(records[1])) {
+						multipleOutputs.write(key,result ,"xunlei");
+					}
 				}
-	        	
-	        
-	        
 	        }
-	        
+
 	        @Override
 	        protected void cleanup(Context context)
 	        		throws IOException, InterruptedException {

@@ -20,19 +20,18 @@ import java.io.IOException;
 
 
 public class Email extends Configured implements Tool {
-    public static class EmailMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+    public static class EmailMapper extends Mapper<LongWritable, Text, Text, Text> {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            context.write(value, new IntWritable(1));
+            context.write(value, new Text(""));
         }
     }
 
-    public static class EmailReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-        private IntWritable result = new IntWritable();
-        private MultipleOutputs<Text, IntWritable> multipleOutputs;
+    public static class EmailReducer extends Reducer<Text, Text, Text, Text> {
+        private MultipleOutputs<Text, Text> multipleOutputs;
 
         @Override
-        protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+        protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
 
             System.out.println("reduce key:" + key.toString());
             int begin = key.toString().indexOf("@");
@@ -41,33 +40,23 @@ public class Email extends Configured implements Tool {
                 return;
             }
 
-            multipleOutputs.write(key, new IntWritable(1), key.toString().substring(begin + 1, end));
+//            multipleOutputs.write(key, new IntWritable(1), key.toString().substring(begin + 1, end));
 
-//            String[] split = key.toString().split("@");
-//            for (String item : split
-//                    ) {
-//                System.out.println("item:" + item);
-//            }
-//            System.out.println("split length:" + split.length);
-//            if (split.length == 2) {
-//                String[] split1 = split[1].split(".");
-//                for (String item : split1
-//                        ) {
-//                    System.out.println("item2:" + item);
-//                }
-//                if (split1.length == 2) {
-//                    System.out.println("name:" + split1[0]);
-//                    multipleOutputs.write(key, new IntWritable(1), split1[0]);
-//                }
-//
-//            }
+            String[] split = key.toString().split("@");
+            if (split.length == 2) {
+                String[] split1 = split[1].split("\\.");
+                if (split1.length == 2) {
+                    multipleOutputs.write(key, new Text(""), split1[0]);
+                }
+
+            }
 
 
         }
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
-            multipleOutputs = new MultipleOutputs<Text, IntWritable>(context);
+            multipleOutputs = new MultipleOutputs<Text, Text>(context);
         }
 
         @Override
@@ -92,7 +81,7 @@ public class Email extends Configured implements Tool {
         job.setMapperClass(EmailMapper.class);
         job.setReducerClass(EmailReducer.class);
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(IntWritable.class);
+        job.setMapOutputValueClass(Text.class);
         job.waitForCompletion(true);
         return 0;
     }
