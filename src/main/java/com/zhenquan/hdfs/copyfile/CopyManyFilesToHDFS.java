@@ -25,14 +25,14 @@ public class CopyManyFilesToHDFS {
      */
     public static void main(String[] args) throws IOException, URISyntaxException {
         //文件上传路径
-        Path dstPath = new Path("hdfs://mini:9000/middle/filter/");
+        Path dstPath = new Path("hdfs://mini1:9000/middle/filter/");
         //调用文件上传 list 方法
         list(dstPath);
     }
 
     public static void list(Path dstPath) throws IOException, URISyntaxException {
         Configuration conf = new Configuration();
-        URI uri = new URI("hdfs://mini:9000");
+        URI uri = new URI("hdfs://mini1:9000");
         //获取文件系统对象
         fs = FileSystem.get(uri, conf);
         //获取本地文件系统
@@ -44,6 +44,7 @@ public class CopyManyFilesToHDFS {
         //*****然后使用 Java API 接口 copyFromLocalFile，将所有 txt 格式的文件上传至 HDFS。*****
         for (Path p : listedPaths
                 ) {
+            System.out.println(p.toString());
             fs.copyFromLocalFile(p, dstPath);
         }
     }
