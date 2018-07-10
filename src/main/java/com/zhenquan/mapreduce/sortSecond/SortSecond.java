@@ -55,6 +55,7 @@ public class SortSecond extends Configured implements Tool {
         protected void reduce(IntPair key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             for (IntWritable right : values
                     ) {
+                System.out.println(key.first+" "+right.toString());
                 context.write(new Text(key.first + ""), new Text(right + ""));
             }
         }
@@ -78,9 +79,15 @@ public class SortSecond extends Configured implements Tool {
         job.setMapperClass(Map.class);// Mapper
         job.setReducerClass(Reduce.class);// Reducer
 
-        job.setPartitionerClass(FirstPartitioner.class);// 分区函数
-        //job.setSortComparatorClass(KeyComparator.Class);//本课程并没有自定义SortComparator，而是使用IntPair自带的排序
-        job.setGroupingComparatorClass(GroupingComparator.class);// 分组函数
+//        job.setPartitionerClass(FirstPartitioner.class);// 分区函数
+//        //job.setSortComparatorClass(KeyComparator.Class);//本课程并没有自定义SortComparator，而是使用IntPair自带的排序
+//        job.setGroupingComparatorClass(GroupingComparator.class);// 分组函数
+
+
+        //todo 这里为什么使用ComparatorClass之后答案不一样了？
+//        job.setPartitionerClass(FirstPartitioner.class);
+//        job.setSortComparatorClass(KeyComparator.class);
+//        job.setGroupingComparatorClass(GroupingComparator.class);
 
 
         job.setMapOutputKeyClass(IntPair.class);
@@ -96,7 +103,7 @@ public class SortSecond extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] args0 = {"hdfs://mini:9000/sort/sort.txt","hdfs://mini:9000/sort/out/"};
+        String[] args0 = {"hdfs://mini:9000/sort/sort.txt", "hdfs://mini:9000/sort/out/"};
         int run = ToolRunner.run(new Configuration(), new SortSecond(), args0);
         System.exit(run);
     }
