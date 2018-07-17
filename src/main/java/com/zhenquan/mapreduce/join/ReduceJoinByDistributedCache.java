@@ -46,8 +46,7 @@ public class ReduceJoinByDistributedCache extends Configured implements Tool{
         /**
          * 获取分布式缓存文件
          */
-        protected void setup(Context context) throws IOException,
-        InterruptedException {
+        protected void setup(Context context) throws IOException, InterruptedException {
 		BufferedReader br;
 		String infoAddr = null;
 		// 返回缓存文件路径
@@ -112,9 +111,9 @@ public class ReduceJoinByDistributedCache extends Configured implements Tool{
 		return job.waitForCompletion(true) ? 0 : 1;
     }
     public static void main(String[] args) throws Exception {
-    	String[] args1 = {"hdfs://mini:9000/MRjoin/station.txt"
-     			,"hdfs://mini:9000/MRjoin/records.txt"
-     			,"hdfs://mini:9000/MRjoin/out"
+    	String[] args1 = {"hdfs://mini:9000/record/station.txt"
+     			,"hdfs://mini:9000/record/records.txt"
+     			,"hdfs://mini:9000/record/out"
      	};
     	int ec = ToolRunner.run(new Configuration(),new ReduceJoinByDistributedCache(), args1);
     	System.exit(ec);

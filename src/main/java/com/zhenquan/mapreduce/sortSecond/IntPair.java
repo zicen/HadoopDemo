@@ -11,16 +11,17 @@ public class IntPair implements WritableComparable<IntPair> {
     public int first;
     public int second;
 
-    @Override
-    public int compareTo(IntPair o) {
-        if (first != o.first) {
-            return first > o.first ? 1 : -1;
-        } else if (second != o.second) {
-            return second > o.second ? 1 : -1;
-        } else {
-            return 0;
-        }
-    }
+//    @Override
+//    public int compareTo(IntPair o) {
+////        if (first != o.first) {
+////            return first > o.first ? 1 : -1;
+////        } else if (second != o.second) {
+////            return second > o.second ? 1 : -1;
+////        } else {
+////            return 0;
+////        }
+//        return 0;
+//    }
 
     public void set(int first, int second) {
         this.first = first;
@@ -36,5 +37,10 @@ public class IntPair implements WritableComparable<IntPair> {
     public void readFields(DataInput in) throws IOException {
         first = in.readInt();
         second = in.readInt();
+    }
+
+    @Override
+    public int compareTo(IntPair o) {
+        return 0;
     }
 }

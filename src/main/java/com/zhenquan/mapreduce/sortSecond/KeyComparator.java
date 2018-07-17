@@ -13,14 +13,14 @@ public class KeyComparator extends WritableComparator {
         IntPair ip1 = (IntPair) w1;
         IntPair ip2 = (IntPair) w2;
         int l = ip1.first;
-        int r = ip2.second;
-        if (l == r) {
-            if (ip1.second == ip2.second) {
-                return 0;
-            }
-            return ip1.second > ip2.second ? 1 : -1;
-        }else {
+        int r = ip2.first;
+
+        if (l != r) {
             return l > r ? 1 : -1;
+        } else if (ip1.second != ip2.second) {
+            return ip1.second > ip2.second ? 1 : -1;
+        } else {
+            return 0;
         }
     }
 }

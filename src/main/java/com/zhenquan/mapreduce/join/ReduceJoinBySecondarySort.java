@@ -35,8 +35,8 @@ public class ReduceJoinBySecondarySort extends Configured implements Tool{
         FileOutputFormat.setOutputPath(job,outputPath);
         job.setReducerClass(JoinReducer.class);// Reducer
         
-        job.setPartitionerClass(KeyPartitioner.class);//自定义分区
-        job.setGroupingComparatorClass(GroupingComparator.class);//自定义分组
+//        job.setPartitionerClass(KeyPartitioner.class);//自定义分区
+//        job.setGroupingComparatorClass(GroupingComparator.class);//自定义分组
         
         job.setMapOutputKeyClass(TextPair.class);
         job.setMapOutputValueClass(Text.class);
@@ -48,9 +48,9 @@ public class ReduceJoinBySecondarySort extends Configured implements Tool{
 	}
 	
 	 public static void main(String[] args0) throws Exception{
-     	String[] args = {"hdfs://mini:9000/MRjoin/records.txt"
-     			,"hdfs://mini:9000/MRjoin/station.txt"
-     			,"hdfs://mini:9000/MRjoin/out"
+     	String[] args = {"hdfs://mini:9000/record/records.txt"
+     			,"hdfs://mini:9000/record/station.txt"
+     			,"hdfs://mini:9000/record/out"
      	};
          int exitCode = ToolRunner.run(new ReduceJoinBySecondarySort(),args);
          System.exit(exitCode);

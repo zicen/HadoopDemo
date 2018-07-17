@@ -79,19 +79,16 @@ public class SortSecond extends Configured implements Tool {
         job.setMapperClass(Map.class);// Mapper
         job.setReducerClass(Reduce.class);// Reducer
 
-//        job.setPartitionerClass(FirstPartitioner.class);// 分区函数
-//        //job.setSortComparatorClass(KeyComparator.Class);//本课程并没有自定义SortComparator，而是使用IntPair自带的排序
-//        job.setGroupingComparatorClass(GroupingComparator.class);// 分组函数
+        job.setPartitionerClass(FirstPartitioner.class);// 分区函数
+        job.setSortComparatorClass(KeyComparator.class);//本课程并没有自定义SortComparator，而是使用IntPair自带的排序
+        job.setGroupingComparatorClass(GroupingComparator.class);// 分组函数
 
 
-        //todo 这里为什么使用ComparatorClass之后答案不一样了？
-//        job.setPartitionerClass(FirstPartitioner.class);
-//        job.setSortComparatorClass(KeyComparator.class);
-//        job.setGroupingComparatorClass(GroupingComparator.class);
+//这里不使用MapOutputKey就出错了
+//        job.setMapOutputKeyClass(IntPair.class);
+//        job.setMapOutputValueClass(IntWritable.class);
 
 
-        job.setMapOutputKeyClass(IntPair.class);
-        job.setMapOutputValueClass(IntWritable.class);
 //可加可不加
 //        job.setOutputKeyClass(Text.class);
 //        job.setOutputValueClass(Text.class);
