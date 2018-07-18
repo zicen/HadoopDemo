@@ -113,7 +113,7 @@ public class ReduceJoinByDistributedCache extends Configured implements Tool{
     public static void main(String[] args) throws Exception {
     	String[] args1 = {"hdfs://mini:9000/record/station.txt"
      			,"hdfs://mini:9000/record/records.txt"
-     			,"hdfs://mini:9000/record/out"
+     			,"hdfs://mini:9000/record/distributed-out"
      	};
     	int ec = ToolRunner.run(new Configuration(),new ReduceJoinByDistributedCache(), args1);
     	System.exit(ec);

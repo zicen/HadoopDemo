@@ -35,8 +35,8 @@ public class ReduceJoinBySecondarySort extends Configured implements Tool{
         FileOutputFormat.setOutputPath(job,outputPath);
         job.setReducerClass(JoinReducer.class);// Reducer
         
-//        job.setPartitionerClass(KeyPartitioner.class);//自定义分区
-//        job.setGroupingComparatorClass(GroupingComparator.class);//自定义分组
+        job.setPartitionerClass(KeyPartitioner.class);//自定义分区
+        job.setGroupingComparatorClass(GroupingComparator.class);//自定义分组
         
         job.setMapOutputKeyClass(TextPair.class);
         job.setMapOutputValueClass(Text.class);
