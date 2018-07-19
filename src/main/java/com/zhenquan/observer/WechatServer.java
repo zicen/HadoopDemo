@@ -8,7 +8,7 @@ public class WechatServer implements Observerable {
     private String message;
 
     public WechatServer() {
-        this.list = new ArrayList<>();
+        this.list = new ArrayList<Observer>();
     }
 
     @Override

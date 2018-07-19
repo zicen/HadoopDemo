@@ -47,7 +47,7 @@ public class AnagramsDemo extends Configured implements Tool {
         }
 
         public String getSortedWord(String word) {
-            ArrayList<String> letterList = new ArrayList<>();
+            ArrayList<String> letterList = new ArrayList<String>();
             for (int i = 0; i < word.length(); i++) {
                 letterList.add(word.substring(i, i + 1));
             }
@@ -64,7 +64,7 @@ public class AnagramsDemo extends Configured implements Tool {
 
         @Override
         public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            List<Text> valuesList = new ArrayList<>();
+            List<Text> valuesList = new ArrayList<Text>();
             for (Text text : values) {
                 valuesList.add(text);
             }

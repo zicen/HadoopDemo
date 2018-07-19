@@ -37,7 +37,7 @@ import java.util.Hashtable;
  */
 public class MapJoinByDistributedCache extends Configured implements Tool {
     public static class MapJoinMapper extends Mapper<LongWritable, Text, Text, Text> {
-        private Hashtable<String, String> table = new Hashtable<>();
+        private Hashtable<String, String> table = new Hashtable<String, String>();
 
         /**
          * 获取分布式缓存文件

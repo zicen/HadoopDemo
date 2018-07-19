@@ -119,7 +119,7 @@ public class SemiJoin {
 //                .getRemainingArgs();
         String[] otherArgs = {"hdfs://mini:9000/record/records-semi.txt"
                 ,"hdfs://mini:9000/record/station.txt"
-                ,"hdfs://mini:9000/record/mapcache-out"
+                ,"hdfs://mini:9000/record/semi-out"
         };
         if (otherArgs.length < 2) {
             System.err.println("Usage: semijoin <in> [<in>...] <out>");

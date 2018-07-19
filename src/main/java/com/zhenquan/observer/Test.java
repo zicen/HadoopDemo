@@ -9,7 +9,7 @@ public class Test {
         Observer o2 = new User("lisi");
         Observer o3 = new User("wangwu");
         Observer o4 = new User("liyan");
-        ArrayList<Observer> objects = new ArrayList<>();
+        ArrayList<Observer> objects = new ArrayList<Observer>();
         objects.add(o1);
         objects.add(o2);
         objects.add(o3);
