@@ -18,7 +18,7 @@ public class JoinReducer extends Reducer<TextPair, Text, Text, Text>{
 	            Text record = iter.next();
 
 	            Text outValue = new Text(stationName.toString()+"\t"+record.toString());
-	            System.out.println("reduce:"+key.getFirst()+",value:"+outValue);
+	            System.out.println("key:"+key.getFirst()+",value:"+outValue);
 	            context.write(key.getFirst(),outValue);
 	        }
 	    }  

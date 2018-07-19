@@ -9,11 +9,7 @@ import org.junit.Test;
 
 public class JoinRecordMapper extends Mapper<LongWritable, Text, TextPair, Text>{
 	protected void map(LongWritable key, Text value, Context context) throws java.io.IOException ,InterruptedException {
-		System.out.println("JoinRecordMapper value:"+value.toString());
 		String[] arr = StringUtils.split(value.toString(),"\t");
-		for (int i = 0; i < arr.length; i++) {
-			System.out.println("JoinRecordMapper arr"+i+":"+arr[i].toString());
-		}
 		if (arr.length == 3) {
 			System.out.println("JoinRecordMapper key:"+arr[0]+",value:"+arr[1]+"\t"+arr[2]);
 			context.write(new TextPair(arr[0], "1"), new Text(arr[1]+"\t"+arr[2]));
