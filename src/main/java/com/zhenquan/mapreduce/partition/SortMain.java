@@ -55,6 +55,7 @@ public class SortMain extends Configured implements Tool {
             if (str.length() > 0) {
                 str.deleteCharAt(str.length() - 1);
             }
+            System.out.println("key:" + key.getFirstKey() + ",value:" + str.toString());
             context.write(new Text(key.getFirstKey()), new Text(str.toString()));
         }
     }

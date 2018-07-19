@@ -1,5 +1,6 @@
 package com.zhenquan.mapreduce.partition;
 
+import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
 
 /**
@@ -11,12 +12,12 @@ public class TextIntComparator extends WritableComparator {
     }
 
     @Override
-    public int compare(Object a, Object b) {
+    public int compare(WritableComparable a, WritableComparable b) {
         TextInt ti1 = (TextInt) a;
         TextInt ti2 = (TextInt) b;
         if (!ti1.getFirstKey().equals(ti2.getFirstKey())) {
             return ti1.getFirstKey().compareTo(ti2.getFirstKey());
-        }else {
+        } else {
             return ti1.getSecondKey() - ti2.getSecondKey();
         }
     }
