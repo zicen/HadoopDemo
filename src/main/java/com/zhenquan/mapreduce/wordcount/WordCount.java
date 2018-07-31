@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -19,8 +20,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  */
 public class WordCount {
     private static String jobName = "wordcount";
-    private static String inputPath = "hdfs://mini:9000/wordcount/input/djt.txt";
-    private static String outputPath = "hdfs://mini:9000/wordcount/out";
+    private static String inputPath = "hdfs://mini1:9000/test/test.txt";
+    private static String outputPath = "hdfs://mini1:9000/test/out-wordcount";
 
     public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
 
@@ -32,6 +33,7 @@ public class WordCount {
             StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
                 word.set(itr.nextToken());
+                System.out.println("mapper key:" + word.toString() + ",value:" + one.toString());
                 context.write(word, one);
             }
         }
@@ -48,13 +50,19 @@ public class WordCount {
                 sum += val.get();
             }
             result.set(sum);
+            System.out.println("key:" + key.toString() + ",value:" + result.toString());
             context.write(key, result);
         }
     }
 
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "wordcount");
+        Path out = new Path(outputPath);
+        FileSystem hdfs = out.getFileSystem(conf);//创建输出路径
+        if (hdfs.isDirectory(out)) {
+            hdfs.delete(out, true);
+        }
+        Job job = Job.getInstance(conf, jobName);
         job.setJarByClass(WordCount.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setCombinerClass(IntSumReducer.class);
@@ -62,8 +70,8 @@ public class WordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setInputFormatClass(NLineInputFormat.class);
-        FileInputFormat.addInputPath(job, new Path(jobName));
-        FileOutputFormat.setOutputPath(job, new Path(inputPath, outputPath));
+        FileInputFormat.addInputPath(job, new Path(inputPath));
+        FileOutputFormat.setOutputPath(job, out);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 
