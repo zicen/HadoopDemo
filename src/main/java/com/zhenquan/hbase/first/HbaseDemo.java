@@ -1,4 +1,4 @@
-package com.zhenquan.hbase;
+package com.zhenquan.hbase.first;
 
 import com.zhenquan.mapreduce.tv.TvCount;
 import com.zhenquan.mapreduce.wordcount.WordCount;
@@ -10,6 +10,7 @@ import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.util.ProgramDriver;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -126,7 +127,7 @@ public class HbaseDemo {
     }
 
     public static void main(String[] args) throws IOException {
-//        createTable("member");
+        createTable("member");
 //        insertDataByput("member");
 //        QueryByGet("member");
 //        QueryByScan("member");

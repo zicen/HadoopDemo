@@ -9,6 +9,12 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.wisdom-framework/mysql-connector-java -->
+        <dependency>
+            <groupId>org.wisdom-framework</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34_1</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-client -->
         <dependency>
