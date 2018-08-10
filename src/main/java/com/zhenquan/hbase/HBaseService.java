@@ -44,12 +44,12 @@ public class HBaseService {
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
 		HBaseService hBaseService = new HBaseService();
-		hBaseService.insertTask();
+//		hBaseService.insertTask();
 		// 根据Rowkey查询
-//		 String row =
-//		 MD5Hash.getMD5AsHex(Bytes.toBytes("0011706")).substring(0,
-//		 8)+"0011706"+"20160616"+"33005";
-//		 hBaseService.getTaskByRowkey(row);
+		 String row =
+		 MD5Hash.getMD5AsHex(Bytes.toBytes("0011706")).substring(0,
+		 8)+"0011706"+"20160616"+"33005";
+		 hBaseService.getTaskByRowkey(row);
 
 		// 精确到用户uid查询
 //		 int uid = 11772;
@@ -100,9 +100,9 @@ public class HBaseService {
 //		 hbaseClient.close();
 
 		// 查询pv
-		 String tableName = "statistics";
-		 String row = "djt";
-		 hBaseService.getStatisticsByRowkey(tableName, row);
+//		 String tableName = "tesk";
+//		 String row = "cf";
+//		 hBaseService.getStatisticsByRowkey(tableName, row);
 	}
 
 	/**
@@ -552,7 +552,9 @@ public class HBaseService {
 				String taskid = Bytes.toString(CellUtil.cloneValue(result
 						.getColumnLatestCell(Bytes.toBytes("cf"),
 								Bytes.toBytes("taskid"))));
-				System.out.println(name + "@" + type + "@" + taskid);
+                String receivedate = Bytes.toString(CellUtil.cloneValue(result.getColumnLatestCell(Bytes.toBytes("cf"),
+                        Bytes.toBytes("receivedate"))));
+				System.out.println(name + "@" + type + "@" + taskid+"@"+receivedate);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -566,16 +568,17 @@ public class HBaseService {
 	}
 
 	/**
-	 * 插入所有测试数据数据
+	 * 插入所有测试数据数据。   就是将之前存在mysql上面的数据放到hbase上面，然后我们再根据不同的情况去查询这些数据。
+     * 在这里面列簇只有一个，剩下的全是列，列就是原来mysql里面的字段，值就是原来mysql每行的值
 	 */
 	public void insertTask() {
 		String sql = "select * from task";
-		// 提取测试数据
-//		List<Task> list = JDBCUtil.queryData(sql);
-		List<Task> list = new ArrayList<>();
-		// 获取表句柄
+		//1. 从mysql提取测试数据
+		List<Task> list = JDBCUtil.queryData(sql);
+		// 2.获取表句柄
 		Table table = hbaseClient.getTable(hbaseClient.TABLE_NAME);
 		List<Put> putList = new ArrayList<Put>();
+		//3.遍历构建出Put
 		for (Task task : list) {
 			// 拼接Rowkey uid + time +taskid 1 101
 			String fixedUid = MyStringUtil.getFixedLengthStr(
@@ -622,6 +625,7 @@ public class HBaseService {
 			putList.add(put);
 		}
 		try {
+		    //4.插入
 			table.put(putList);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

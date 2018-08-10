@@ -1,0 +1,4 @@
+1.运行TestCreateRegion预分区
+2.运行Test2向Hbase添加100条数据
+3.运行HBaseService观察结果
+注意：平台之间的编码问题

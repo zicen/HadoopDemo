@@ -18,6 +18,11 @@ public class HashChoreWoker implements SplitKeysCalculator{
     //由抽样计算出来的splitkeys结果
     private byte[][] splitKeys;
 
+    /**
+     *
+     * @param baseRecord  抽样的数量，方便我们进行分区
+     * @param prepareRegions  这个是代表分几个区
+     */
     public HashChoreWoker(int baseRecord, int prepareRegions) {
 		// TODO Auto-generated constructor stub
     	this.baseRecord = baseRecord;
@@ -32,7 +37,9 @@ public class HashChoreWoker implements SplitKeysCalculator{
         //使用treeset保存抽样数据，已排序过
         TreeSet<byte[]> rows = new TreeSet<byte[]>(Bytes.BYTES_COMPARATOR);
         for (int i = 0; i < baseRecord; i++) {
-            rows.add(rkGen.nextId());
+            byte[] bytes = rkGen.nextId();
+            System.out.println("row:"+Bytes.toString(bytes));
+            rows.add(bytes);
         }
         int pointer = 0;
         Iterator<byte[]> rowKeyIter = rows.iterator();

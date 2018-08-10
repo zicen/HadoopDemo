@@ -27,7 +27,7 @@ public class Test2 {
     @Before
     public void test0() throws UnknownHostException {
         conf = new Configuration();
-        conf.set("hbase.zookeeper.quorum", "master,slave1,slave2");
+        conf.set("hbase.zookeeper.quorum", "mini,mini1,mini2");
         conf.set("hbase.zookeeper.property.clientPort", "2181");
         try {
             admin = new HBaseAdmin(conf);
@@ -38,16 +38,23 @@ public class Test2 {
 
     @org.junit.Test
     public void testHashAndCreateTable() throws Exception {
-        TableName tableName = TableName.valueOf("task5");
+        TableName tableName = TableName.valueOf("tesk");
         HTable table = new HTable(conf, tableName);
         int uid = 11772;
-        for (int i = 0; i <= 100; i++) {
-            byte[] rowkey = Bytes.add(MD5Hash.getMD5AsHex((uid + "").getBytes()).substring(0, 8).getBytes(), Bytes.toBytes(uid + "20180526" + "3256"));
-            Put put = new Put(rowkey);
-            put.add(Bytes.toBytes("cf"), Bytes.toBytes("uid"), Bytes.toBytes(uid));
-            table.put(put);
-            uid++;
-        }
+        byte[] rowkey = Bytes.add(MD5Hash.getMD5AsHex((uid + "").getBytes()).substring(0, 8).getBytes(), Bytes.toBytes(uid + "20180526" + "3256"));
+        System.out.println("rowkey"+Bytes.toString(rowkey));
+        Put put = new Put(rowkey);
+        put.add(Bytes.toBytes("cf"), Bytes.toBytes("uid"), Bytes.toBytes("11772"));
+        put.add(Bytes.toBytes("cf"), Bytes.toBytes("name"), Bytes.toBytes("测试"));
+        table.put(put);
+        table.close();
+//        for (int i = 0; i <= 100; i++) {
+//            byte[] rowkey = Bytes.add(MD5Hash.getMD5AsHex((uid + "").getBytes()).substring(0, 8).getBytes(), Bytes.toBytes(uid + "20180526" + "3256"));
+//            Put put = new Put(rowkey);
+//            put.add(Bytes.toBytes("cf"), Bytes.toBytes("uid"), Bytes.toBytes(uid));
+//            table.put(put);
+//            uid++;
+//        }
     }
 
 }

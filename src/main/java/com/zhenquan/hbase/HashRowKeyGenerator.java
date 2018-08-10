@@ -28,8 +28,11 @@ public class HashRowKeyGenerator implements RowKeyGenerator {
     }
     
     public static void main(String[] args) {
-    	//HashRowKeyGenerator hashRowKeyGenerator = new HashRowKeyGenerator();
-    	System.out.println(Bytes.toBytes(1));
+    	HashRowKeyGenerator hashRowKeyGenerator = new HashRowKeyGenerator();
+
+    	System.out.println(Bytes.toString(hashRowKeyGenerator.nextId()));
+    	System.out.println(Bytes.toString(hashRowKeyGenerator.nextId()));
+    	System.out.println(Bytes.toString(hashRowKeyGenerator.nextId()));
 	}
 
 }

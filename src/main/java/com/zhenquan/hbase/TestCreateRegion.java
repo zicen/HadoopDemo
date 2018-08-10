@@ -24,7 +24,7 @@ public class TestCreateRegion {
 	@Before
 	public void test0() throws UnknownHostException {
 		conf = new Configuration();
-		conf.set("hbase.zookeeper.quorum", "master,slave1,slave2");
+		conf.set("hbase.zookeeper.quorum", "mini,mini1,mini2");
 		//conf.set("hbase.zookeeper.quorum", "djt");
 		conf.set("hbase.zookeeper.property.clientPort", "2181");
 		try {
@@ -37,7 +37,7 @@ public class TestCreateRegion {
 	public void testHashAndCreateTable() throws Exception{
 		 	HashChoreWoker worker = new HashChoreWoker(1000000,10);
 	        byte [][] splitKeys = worker.calcSplitKeys();
-	        TableName tableName = TableName.valueOf("task5");
+	        TableName tableName = TableName.valueOf("tesk");
 	        
 	        if (admin.tableExists(tableName)) {
 	            try {
@@ -51,8 +51,8 @@ public class TestCreateRegion {
 	        HColumnDescriptor columnDesc = new HColumnDescriptor(Bytes.toBytes("cf"));
 	        columnDesc.setMaxVersions(1);
 	        tableDesc.addFamily(columnDesc);
-
-	        admin.createTable(tableDesc ,splitKeys);
+			//与普通的创建表就是多了一个预分区的参数而已
+	        admin.createTable(tableDesc,splitKeys);
 
 	        admin.close();
 	    }

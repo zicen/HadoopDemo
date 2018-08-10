@@ -49,7 +49,7 @@ public class HbaseDemo {
      */
     public static void insertDataByput(String tableName) throws IOException {
         HTable table = new HTable(conf, tableName);
-        //创建一个对象也就是一个行
+        //创建一个对象也就是一个行.这里就是往两个列簇里面添加数据，类似key-value的形式
         Put put = new Put(getBytes("zhenquan"));
         put.add(getBytes("address"), getBytes("country"), getBytes("china"));
         put.add(getBytes("address"), getBytes("province"), getBytes("上海"));
