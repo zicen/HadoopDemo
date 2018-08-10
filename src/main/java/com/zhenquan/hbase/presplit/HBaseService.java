@@ -1,4 +1,4 @@
-package com.zhenquan.hbase;
+package com.zhenquan.hbase.presplit;
 
 import java.io.IOException;
 import java.util.ArrayList;

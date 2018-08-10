@@ -13,8 +13,8 @@ public class IntPair implements WritableComparable<IntPair> {
 
 //    @Override
 //    public int compareTo(IntPair o) {
-////        if (first != o.first) {
-////            return first > o.first ? 1 : -1;
+////        if (crud != o.crud) {
+////            return crud > o.crud ? 1 : -1;
 ////        } else if (second != o.second) {
 ////            return second > o.second ? 1 : -1;
 ////        } else {

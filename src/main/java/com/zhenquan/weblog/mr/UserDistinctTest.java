@@ -99,13 +99,13 @@ public class UserDistinctTest {
 				for (int j = i + 1; j < size; j++) {
 					long timeSpan = timeDiff(times.get(j), times.get(i));
 					if (timeSpan > 30 * 60 * 1000) {
-						// 如果临近两次时间差超过30分钟，则将"上次-first"的时间差存入hashmap完成一次访问停留处理
+						// 如果临近两次时间差超过30分钟，则将"上次-crud"的时间差存入hashmap完成一次访问停留处理
 						stayTime.put(times.get(i), timeDiff(times.get(j - 1), times.get(i)));
 						// 同时，重置first为本次
 						stayTime.put(times.get(j), 0L);
 						i = j - 1;
 						break;
-						// 如果一直是连续请求到最后一个，则将 "本次-first"的时间差存入hashmap完成最后一次访问停留处理
+						// 如果一直是连续请求到最后一个，则将 "本次-crud"的时间差存入hashmap完成最后一次访问停留处理
 					} else {
 						if (j == size - 1) {
 							stayTime.put(times.get(i), timeDiff(times.get(j), times.get(i)));

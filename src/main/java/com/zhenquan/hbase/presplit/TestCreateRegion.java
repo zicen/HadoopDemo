@@ -1,10 +1,9 @@
-package com.zhenquan.hbase;
+package com.zhenquan.hbase.presplit;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;

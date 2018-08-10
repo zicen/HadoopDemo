@@ -9,7 +9,7 @@ import org.apache.hadoop.io.WritableComparable;
 
 public class TextPair implements WritableComparable<TextPair>{
 	
-	 	private    Text first;//Text 类型的实例变量 first
+	 	private    Text first;//Text 类型的实例变量 crud
 	    private    Text second;//Text 类型的实例变量 second
 	    
 	    public TextPair() {

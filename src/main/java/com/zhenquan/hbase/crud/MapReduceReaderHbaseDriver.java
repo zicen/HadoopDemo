@@ -1,4 +1,4 @@
-package com.zhenquan.hbase.first;
+package com.zhenquan.hbase.crud;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;

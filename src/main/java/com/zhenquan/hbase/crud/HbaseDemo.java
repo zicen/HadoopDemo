@@ -1,7 +1,5 @@
-package com.zhenquan.hbase.first;
+package com.zhenquan.hbase.crud;
 
-import com.zhenquan.mapreduce.tv.TvCount;
-import com.zhenquan.mapreduce.wordcount.WordCount;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
@@ -9,8 +7,6 @@ import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.apache.hadoop.util.ProgramDriver;
-import org.junit.Test;
 
 import java.io.IOException;
 

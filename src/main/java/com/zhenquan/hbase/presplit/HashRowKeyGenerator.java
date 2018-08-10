@@ -1,4 +1,4 @@
-package com.zhenquan.hbase;
+package com.zhenquan.hbase.presplit;
 
 import java.util.Random;
 

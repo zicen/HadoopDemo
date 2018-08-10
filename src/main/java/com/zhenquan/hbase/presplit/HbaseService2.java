@@ -1,9 +1,7 @@
-package com.zhenquan.hbase;
+package com.zhenquan.hbase.presplit;
 
 import com.zhenquan.hbase.utils.DateUtils;
 import com.zhenquan.hbase.utils.MyStringUtil;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;

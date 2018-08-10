@@ -1,5 +1,5 @@
 package com.zhenquan.hbase.utils;
-import com.zhenquan.hbase.Task;
+import com.zhenquan.hbase.presplit.Task;
 import org.junit.Test;
 
 import java.sql.Connection;

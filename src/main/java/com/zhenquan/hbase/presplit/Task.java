@@ -1,4 +1,4 @@
-package com.zhenquan.hbase;
+package com.zhenquan.hbase.presplit;
 /**
  * 学习任务实体类
  * @author dajiangtai
