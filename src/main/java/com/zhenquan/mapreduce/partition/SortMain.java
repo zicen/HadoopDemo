@@ -80,7 +80,7 @@ public class SortMain extends Configured implements Tool {
         job.setReducerClass(GroupReduce.class);
         //设置分区方法
         job.setPartitionerClass(KeyPartition.class);
-
+        job.setNumReduceTasks(2);
         //下面这两个都是针对map端的
         //设置分组的策略，哪些key可以放置到一组中
         job.setGroupingComparatorClass(TextComparator.class);
@@ -104,8 +104,8 @@ public class SortMain extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] args0 = {"hdfs://mini:9000/record/partition.txt"
-                , "hdfs://mini:9000/record/partition-out"
+        String[] args0 = {"hdfs://mini1:9000/record/partition.txt"
+                , "hdfs://mini1:9000/record/partition-out"
         };
         int exitCode = ToolRunner.run(new SortMain(), args0);
         System.exit(exitCode);

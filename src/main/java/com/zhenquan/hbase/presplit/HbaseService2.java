@@ -21,6 +21,12 @@ public class HbaseService2 {
     public void test0() throws UnknownHostException {
         hBaseClient = HBaseClient.getHBaseClient();
     }
+    public  void  getTaskByRowFilter(){
+        hBaseClient.getTable(hBaseClient.TABLE_NAME);
+
+
+
+    }
 
     @Test
     public void getTaskByRowKey() {
