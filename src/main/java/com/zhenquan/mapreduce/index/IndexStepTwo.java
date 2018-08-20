@@ -1,4 +1,4 @@
-package com.zhenquan.mapreduce;
+package com.zhenquan.mapreduce.index;
 
 import java.io.IOException;
 

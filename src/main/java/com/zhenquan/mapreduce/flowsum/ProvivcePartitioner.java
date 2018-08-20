@@ -16,7 +16,6 @@ public class ProvivcePartitioner extends Partitioner<Text, FlowBean> {
         provinceMap.put("137", 2);
         provinceMap.put("138", 3);
         provinceMap.put("139", 4);
-
     }
 
     @Override
@@ -26,7 +25,6 @@ public class ProvivcePartitioner extends Partitioner<Text, FlowBean> {
         if (code != null) {
             return code;
         }
-
         return 5;
     }
 

@@ -95,7 +95,7 @@
                             <addClasspath>true</addClasspath>
                             <useUniqueVersions>false</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>cn.zhenquan.flume.LogAnalysis</mainClass>
+                            <mainClass>com.zhenquan.mapreduce.flowsum.FlowSumProvince</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

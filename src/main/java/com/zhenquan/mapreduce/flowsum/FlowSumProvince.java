@@ -44,7 +44,7 @@ public class FlowSumProvince {
 			
 			k.set(phoneNum);
 			v.set(upFlow, downFlow);
-			
+			System.out.println("map key:"+k.toString()+",value:"+v.toString());
 			context.write(k,v);
 			
 		}
@@ -67,6 +67,7 @@ public class FlowSumProvince {
              
 			  FlowBean sumbean = new FlowBean();
 			  sumbean.set(upFlowCount, downFlowCount);
+			System.out.println("reduce key:"+key.toString()+",value:"+sumbean.toString());
 			  context.write(key, sumbean);
 
 		}
@@ -77,7 +78,11 @@ public class FlowSumProvince {
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf);
-		
+		Path out = new Path("hdfs://mini1:9000/flowsum/output-partition2");
+		FileSystem hdfs = out.getFileSystem(conf);//创建输出路径
+		if (hdfs.isDirectory(out)) {
+			hdfs.delete(out, true);
+		}
 		job.setJarByClass(FlowSumProvince.class);
 
 		//告诉程序，我们的程序所用的mapper类和reducer类是什么
@@ -99,16 +104,16 @@ public class FlowSumProvince {
 		//如果我们的Reduce task个数 < partition分区数  就会报错Illegal partition
 		//如果我们的Reduce task个数 > partition分区数 不会报错，会有空文件产生
 		//如果我们的Reduce task个数  = 1  partitoner组件就无效了  不存在分区的结果
+		//这里我打成jar放在集群上运行是ok的，但是直接在本地就无效，为什么？那我想要在本地测试这种情况能做到吗？怎么做？
 		job.setNumReduceTasks(6);
         //设置我们的shuffer的分区组件使用我们自定义的组件
         job.setPartitionerClass(ProvivcePartitioner.class);
 		//告诉框架，我们要处理的数据文件在那个路劲下
 		FileInputFormat.setInputPaths(job, new Path("hdfs://mini1:9000/flowsum/input"));
 		System.out.println("getNumReduceTasks:"+job.getNumReduceTasks());
-		Path out = new Path("hdfs://mini1:9000/flowsum/output-partition2");
 		//告诉框架，我们的处理结果要输出到什么地方
 		FileOutputFormat.setOutputPath(job, out);
-		
+
 		boolean res = job.waitForCompletion(true);
 		
 		System.exit(res?0:1);
