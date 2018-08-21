@@ -1,4 +1,6 @@
 package com.zhenquan.elasticsearch;
+import com.zhenquan.elasticsearch.mysql2hbase.TVCount;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

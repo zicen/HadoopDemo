@@ -41,13 +41,13 @@ public class ESTestQuery {
 				.build()
 				.addTransportAddress(
 						new InetSocketTransportAddress(InetAddress
-								.getByName("master"), 9300))
+								.getByName("mini"), 9300))
 				.addTransportAddress(
 						new InetSocketTransportAddress(InetAddress
-								.getByName("slave1"), 9300))
+								.getByName("mini1"), 9300))
 				.addTransportAddress(
 						new InetSocketTransportAddress(InetAddress
-								.getByName("slave2"), 9300));
+								.getByName("mini2"), 9300));
 	}
 	/**
 	 * 查询：query
@@ -59,17 +59,18 @@ public class ESTestQuery {
 	 */
 	@Test
 	public void test1() throws Exception {
-		SearchRequestBuilder builder = client.prepareSearch("djt1");
-		builder//.setQuery(QueryBuilders.matchQuery("info", "marry and john"))
-			   .setQuery(QueryBuilders.matchAllQuery())
-			   //.setQuery(QueryBuilders.multiMatchQuery("john", "name","info"))
+		SearchRequestBuilder builder = client.prepareSearch("tv");
+		builder.setTypes("tvcount");
+		builder//.setQuery(QueryBuilders.matchQuery("tvname", "琅琊榜"))
+//			   .setQuery(QueryBuilders.matchAllQuery())
+			   .setQuery(QueryBuilders.multiMatchQuery("胡歌", "tvname","desciption","actor","director"))
 			   //.setQuery(QueryBuilders.queryStringQuery("name:tom*"))
 			   //.setQuery(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("name", "tom").boost(3.0f)).should(QueryBuilders.matchQuery("age", 32).boost(1.0f)))
-				//.setQuery(QueryBuilders.termQuery("info", "tom"))
+//				.setQuery(QueryBuilders.termQuery("_id", "yk_zd56886dc86fc11e3a705"))
 				.setFrom(0)
 				.setSize(10)
-				.addSort("age", SortOrder.ASC)
-				.setPostFilter(QueryBuilders.rangeQuery("age").from(30).to(32))
+//				.addSort("age", SortOrder.ASC)
+//				.setPostFilter(QueryBuilders.rangeQuery("age").from(30).to(32))
 				.setExplain(false)
 				;
 		SearchResponse searchResponse = builder.get();
@@ -80,4 +81,7 @@ public class ESTestQuery {
 			System.out.println(searchHit.getSource().toString());
 		}
 	}
+
+
+
 }

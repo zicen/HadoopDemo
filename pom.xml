@@ -73,6 +73,7 @@
             <version>1.6.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+        <!--这个包比较特殊，要自己新建一个maven项目，然后打成一个新的包install一下，然后再引用。-->
         <dependency>
             <groupId>com.zhenquan</groupId>
             <artifactId>elastic</artifactId>
