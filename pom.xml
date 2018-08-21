@@ -72,6 +72,12 @@
             <artifactId>flume-ng-core</artifactId>
             <version>1.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+        <dependency>
+            <groupId>com.zhenquan</groupId>
+            <artifactId>elastic</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 
