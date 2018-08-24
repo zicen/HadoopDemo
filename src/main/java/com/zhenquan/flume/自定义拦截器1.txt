@@ -1,0 +1,11 @@
+Flume实操—自定义拦截器（一）（master）
+1.编写flume 配置文件，添加文件名称值header
+2.编写自定义拦截器提取文件名称
+3.通过mvn package 对项目打包
+4.创建plugins.d相应目录并上传相应的jar
+flume/plugins.d/Interceptor1/lib
+flume/plugins.d/Interceptor1/libext
+flume/plugins.d/Interceptor1/native
+5.修改flume配置，修改type属性为com.dajiangtai.flume.RegexExtractorExtInterceptor$Builder
+6.启动flume
+bin/flume-ng agent -n agent1 -c conf -f conf/spooldir-myInterceptor-file-kafka.properties -Dflume.root.logger=INFO,console
