@@ -4,7 +4,6 @@ import com.google.common.base.Charsets;
 import com.google.gson.JsonObject;
 import org.apache.flume.Event;
 import org.apache.flume.interceptor.Interceptor;
-import org.json.simple.JSONArray;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package com.zhenquan.storm.ack;
 
-import backtype.storm.task.OutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.OutputFieldsDeclarer;
-import backtype.storm.topology.base.BaseRichBolt;
-import backtype.storm.tuple.Fields;
-import backtype.storm.tuple.Tuple;
-import backtype.storm.tuple.Values;
+import org.apache.storm.task.OutputCollector;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+import org.apache.storm.topology.base.BaseRichBolt;
+import org.apache.storm.tuple.Fields;
+import org.apache.storm.tuple.Tuple;
+import org.apache.storm.tuple.Values;
 
 import java.util.Map;
 
@@ -23,6 +23,8 @@ public class Bolt3 extends BaseRichBolt {
 
     //被循环调用
     public void execute(Tuple input) {
+        String string = input.getString(0);
+        System.out.println("bolt3的execute input.getString(0):"+string);
         collector.emit(input,new Values(input.getString(0)));
         System.out.println("bolt3的execute方法被调用一次" + input.getString(0));
         collector.fail(input);

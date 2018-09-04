@@ -20,8 +20,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  */
 public class WordCount {
     private static String jobName = "wordcount";
-    private static String inputPath = "hdfs://mini1:9000/test/test.txt";
-    private static String outputPath = "hdfs://mini1:9000/test/out-wordcount";
+    private static String inputPath = "C:\\Users\\ry\\Desktop\\wordcount.txt";
+    private static String outputPath = "C:\\Users\\ry\\Desktop\\wordcount";
 
     public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
 
